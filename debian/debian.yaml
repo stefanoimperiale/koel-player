@@ -1,0 +1,14 @@
+flutter_app:
+  command: player
+  arch: x64
+  parent: /usr/local/lib
+
+control:
+  Package: Koel
+  Version: 1.0.0
+  Architecture: amd64
+  Essential: no
+  Priority: optional
+  Depends: mpv
+  Maintainer: Stefano Imperiale <stefanoimperiale92@gmail.com>
+  Description: Koel player for Linux
