@@ -8,7 +8,7 @@ import 'package:app/ui/screens/info_sheet/lyrics_pane.dart';
 import 'package:app/ui/widgets/widgets.dart' hide AppBar;
 import 'package:figma_squircle/figma_squircle.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
+import 'package:flutter_html/flutter_html.dart' as html;
 import 'package:fading_edge_scrollview/fading_edge_scrollview.dart';
 
 class InfoSheet extends StatefulWidget {
@@ -78,26 +78,26 @@ class _InfoSheetState extends State<InfoSheet> {
 /// on a mobile device (e.g., line height).
 class InfoHtml extends StatelessWidget {
   final String content;
-  final Style? style;
+  final html.Style? style;
 
   const InfoHtml({Key? key, required this.content, this.style})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SelectableHtml(
+    return SelectionArea(child:html.Html(
       data: '<div>$content</div>',
       style: {
-        'body': Style().copyWith(
-          padding: EdgeInsets.zero,
-          margin: EdgeInsets.zero,
+        'body': html.Style().copyWith(
+          padding: html.HtmlPaddings.zero,
+          margin: html.Margins.zero,
         ),
-        'div': (style ?? Style()).copyWith(
-          fontSize: FontSize.large,
-          lineHeight: LineHeight.number(1.4),
+        'div': (style ?? html.Style()).copyWith(
+          fontSize: html.FontSize.large,
+          lineHeight: html.LineHeight.number(1.4),
         ),
       },
-    );
+    ));
   }
 }
 

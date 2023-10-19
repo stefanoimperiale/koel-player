@@ -1,0 +1,74 @@
+name: koel
+version: 0.1.0
+summary: Koel player
+description: Koel player for Linux
+
+confinement: strict
+base: core22
+grade: stable
+
+slots:
+  koel: # adjust accordingly to your app name
+    interface: dbus
+    bus: session
+    name: org.koel # adjust accordingly to your app name and
+
+
+
+apps:
+  koel:
+    command: player
+    extensions: [gnome] # gnome includes the libraries required by flutter
+    plugs:
+      - network
+      - network-bind
+      - network-control
+      - home
+      - audio-playback
+      - audio-record
+      - network-manager
+      - pulseaudio
+    slots:
+      - koel
+icon: snap/gui/koel.png
+
+parts:
+  koel:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application
+    stage-snaps:
+      - mpv
+#  mpvfile:
+#    plugin: python
+#    source: https://github.com/mpv-player/mpv/archive/v0.35.0.tar.gz
+#    override-build: |
+#      wget https://waf.io/waf-2.0.22 -O waf
+#      python3 waf configure --prefix=${SNAPCRAFT_PART_INSTALL} --enable-libmpv-shared --disable-build-date --disable-manpage-build --disable-alsa --enable-libarchive --disable-lua --disable-javascript --disable-uchardet --disable-drm --disable-dvdnav
+#      python3 waf build
+#      python3 waf install
+#
+#    build-packages:
+#      - wget
+#      - libass-dev
+#      - libarchive-dev
+#      - libavutil-dev
+#      - libavcodec-dev
+#      - libavformat-dev
+#      - libswscale-dev
+#      - libavdevice-dev
+#      - libavfilter-dev
+#      - libswresample-dev
+#    stage-packages:
+#      - libass9
+#      - libarchive13
+#      - libavutil56
+#      - libavcodec58
+#      - libavformat58
+#      - libswscale5
+#      - libavdevice58
+#      - libavfilter7
+#      - libswresample3
+#      - libuchardet0
+#      - libdvdnav4
+#

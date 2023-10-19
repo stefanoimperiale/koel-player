@@ -8,8 +8,11 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:window_size/window_size.dart';
 
 late KoelAudioHandler audioHandler;
+
+
 
 List<SingleChildWidget> _providers = [
   Provider(create: (_) => AuthProvider()),
@@ -75,6 +78,8 @@ List<SingleChildWidget> _providers = [
 ];
 
 Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  setWindowTitle("Koel");
   audioHandler = await AudioService.init(
     builder: () => KoelAudioHandler(),
     config: AudioServiceConfig(

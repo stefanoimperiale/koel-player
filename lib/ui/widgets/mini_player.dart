@@ -47,8 +47,9 @@ class _MiniPlayerState extends State<MiniPlayer> with StreamSubscriber {
   }
 
   @override
-  void dispose() {
+  void dispose() async {
     unsubscribeAll();
+    await audioHandler.cleanUpUponClose();
     super.dispose();
   }
 

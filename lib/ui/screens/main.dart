@@ -46,6 +46,12 @@ class _MainScreenState extends State<MainScreen> {
     );
   }
 
+  @override
+  void dispose() async {
+    await audioHandler.cleanUpUponClose();
+    super.dispose();
+  }
+
   BottomNavigationBarItem tabBarItem({
     required String title,
     required IconData icon,

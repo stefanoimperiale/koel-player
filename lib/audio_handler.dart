@@ -275,6 +275,13 @@ class KoelAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandler {
     await clearQueue();
   }
 
+  Future<void> cleanUpUponClose() async {
+    await _player.stop();
+    await _player.dispose();
+    await clearQueue();
+  }
+
+
   Future<void> queueToBottom(Song song) async {
     final mediaItem = await song.asMediaItem();
 
